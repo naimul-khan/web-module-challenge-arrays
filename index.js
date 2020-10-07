@@ -305,17 +305,38 @@ function getRandomFlavors(array1, array2, array3, array4)
     let mixedItems = Array.from(uniqueItem); 
     const mILength = mixedItems.length; 
     
+    // randomize index order
+    var currentIndex = mILength; 
+    var tempVal;
+    var randomIndex; 
+    
+    // console.log(mixedItems);
+    
+    while(0!==currentIndex)
+    {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1; 
+      
+      tempVal = mixedItems[currentIndex]; 
+      mixedItems[currentIndex] = mixedItems[randomIndex]; 
+      mixedItems[randomIndex] = tempVal; 
+    }
+    
     // array for 31 flavors
     let randomFlavors = new Array();
-
-    for(let i=0; i<31; i++)
+    const randomLength= 31;
+    for(let i=0; i<randomLength; i++)
     {
-        randomFlavors.push(mixedItems[Math.floor(Math.random()*mILength)]);
+      randomFlavors[i] = mixedItems[i];  
     }
+    
+    // console.log(randomFlavors);
+    
     
     return randomFlavors;
     
 }
+
 
 // NEW DATA ARRAYS FOR STRETCH 2 ⬇️
 const newFlavors = [
