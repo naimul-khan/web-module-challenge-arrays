@@ -44,11 +44,19 @@ Use the copy function below to do the following:
     1. Receive two arguments: one for your new array and one for your original array
     2. Return the new array that holds an exact copy of the old array  
 */
-
-function copy(/*your code here*/){
-    /*your code here*/
-}    
-
+function copy(oldArray, newArray){
+    // find length of old array; 
+      newArray = [];
+      const oldLength = oldArray.length; 
+      console.log(oldLength); 
+      
+      for(let i=0; i < oldLength; i++)
+      { 
+        newArray.push(oldArray[i]); 
+      }
+      
+      return newArray;
+  }    
 
 
 
@@ -64,8 +72,18 @@ For Example: is31Flavors(originalFlavors) will return true if your code is worki
 */
 
 
-function is31Flavors(/*your code here*/){
+function is31Flavors(checkArray){
    /*your code here*/
+   let arrayLength = checkArray.length; 
+
+   if(arrayLength === 31)
+   { 
+       return true; 
+   } 
+   else
+   {
+       return false;
+   }
 }
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
@@ -81,9 +99,12 @@ Use the addFlavor function below to do the following:
 */
 
 
-function addFlavor(/*your code here*/){
-   /*your code here*/
-}
+function addFlavor(currentArray, newFlavor){
+    /*your code here*/
+    currentArray.unshift(newFlavor);
+    
+    return currentArray; 
+ }
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -97,8 +118,11 @@ Use the removeLastFlavor function below to do the following:
     For example: running removeLastFlavor(originalFlavors) would return ["Rainbow Sherbert", "Banana Nut Fudge",..."Vanilla"]
 */
 
-function removeLastFlavor(/*your code here*/){
+function removeLastFlavor(currentArray){
    /*your code here*/
+   currentArray.pop();
+
+   return currentArray;
 }
 
 
@@ -113,8 +137,12 @@ Use the getFlavorByIndex function below to do the following:
     For example: running getFlavorByIndex(originalFlavors, 2) would return "Black Walnut", assuming Rainbow Sherbert has been added successfully
 */
 
-function getFlavorByIndex(/*your code here*/){
+function getFlavorByIndex(currentArray, position){
     /*your code here*/
+    const num = position; 
+    const item = currentArray[num];
+
+    return item;
 }
 
 
@@ -132,8 +160,19 @@ Use the removeFlavorByName function below to do the following:
     HINT: You can use .splice() for this
 */
 
-function removeFlavorByName(/*your code here*/){
+function removeFlavorByName(currentArray, remFlavor){
     /*your code here*/
+    const arrayLength = currentArray.length; 
+
+    for(let i=0; i < arrayLength; i++)
+    { 
+        if(currentArray[i] === remFlavor)
+        { 
+            currentArray.splice(i, 1);
+        }
+    }
+
+    return currentArray;
 }
 
 
@@ -157,10 +196,22 @@ Use the filterByWord function below to do the following:
     DO NOT USE ADVANCED ARRAY METHODS (i.e. .filter) to solve this problem. 
 */
 
-function filterByWord(/*your code here*/){
+function filterByWord(currentArray, flavor){
     /*your code here*/
+    let filteredArray = []; 
+    
+    const arrayLength = currentArray.length;
+    
+    for(let i=0;i < arrayLength; i++) { 
+    
+      if(currentArray[i].includes(flavor))
+      { 
+          filteredArray.push(currentArray[i]);
+      }
+    }
+    
+    return filteredArray;
 }
-
 
 /* 💪💪💪💪💪🧁🍦🍨 STRETCH 🍨🍦🍫💪💪💪💪💪*/ 
 
@@ -174,8 +225,32 @@ Use the getAverageWordLength function below to do the following:
     For example: getAverageWordLength(originalFlavors) should return a number between 0 and 3.     
 */
 
-function getAverageWordLength(/*code here*/){
-    /*code here*/
+function getAverageWordLength(currentArray){
+    /*
+      1. Create an array that holds the number of words in each item.
+      2. Create a function that adds all the values then divides by array length
+      3. return the answer
+    */
+    
+    const arrayLen = currentArray.length; 
+    let numArray = []; 
+    
+    for(let i=0; i<arrayLen; i++)
+    { 
+      numArray.push(currentArray[i].split(' ').length);
+    }
+    
+    let sum = 0; 
+    
+    for(i=0; i < arrayLen; i++)
+    { 
+      sum = sum + numArray[i]; 
+    }
+    
+    let mean = sum / arrayLen; 
+    
+    return mean; 
+    
 }
 
 
@@ -192,8 +267,54 @@ Use the getRandomFlavors function and new arrays below to do the following:
 */
 
 
-function getRandomFlavors(/*code here*/){
-    /*code here*/
+function getRandomFlavors(array1, array2, array3, array4)
+{
+    // Concat all the lists into one, remove any duplicates. 
+    let mixedList = []; 
+    const array1Len = array1.length; 
+    const array2Len = array2.length; 
+    const array3Len = array3.length; 
+    const array4Len = array4.length; 
+    
+    const totalArrayLen = array1Len + array2Len + array3Len + array4Len; 
+    
+      for(let i=0; i < array1Len; i++) 
+      { 
+          mixedList.push(array1[i]); 
+      }
+
+       for(let i=0; i < array2Len; i++) 
+      { 
+          mixedList.push(array2[i]); 
+      } 
+
+      for(let i=0; i < array3Len; i++) 
+      { 
+          mixedList.push(array3[i]); 
+      }
+
+      for(let i=0; i < array4Len; i++) 
+      { 
+          mixedList.push(array4[i]); 
+      }
+    
+    // remove duplicated
+    let uniqueItem = [... new Set(mixedList)];
+    
+    // convert back to array
+    let mixedItems = Array.from(uniqueItem); 
+    const mILength = mixedItems.length; 
+    
+    // array for 31 flavors
+    let randomFlavors = new Array();
+
+    for(let i=0; i<31; i++)
+    {
+        randomFlavors.push(mixedItems[Math.floor(Math.random()*mILength)]);
+    }
+    
+    return randomFlavors;
+    
 }
 
 // NEW DATA ARRAYS FOR STRETCH 2 ⬇️
